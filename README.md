@@ -1,4 +1,4 @@
-# Lookup API
+# ProxyTools
 ![Node.js Badge](https://img.shields.io/badge/18.0.0%20or%20higher%20recommended!-ffa6ed?style=for-the-badge&color=ffa6ed&labelColor=ff6ee9&label=nodejs)
 ![NPM Badge](https://img.shields.io/badge/10.x.x%20or%20higher%20recommended!-ffa6ed?style=for-the-badge&color=ffa6ed&labelColor=ff6ee9&label=npm)
 
