@@ -20,6 +20,10 @@ function gotoCfxResolver() {
   window.location.href = '/cfx-resolver';
 }
 
+function gotoWebhookValidator() {
+  window.location.href = '/webhook-validator';
+}
+
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -55,6 +59,9 @@ export default function Home() {
           </Button>
           <Button variant="default" className="text-lg px-6 py-4" onClick={() => gotoWebhookDeleter()}>
             Webhook Deleter
+          </Button>
+          <Button variant="default" className="text-lg px-6 py-4" onClick={() => gotoWebhookValidator()}>
+            Webhook Validator
           </Button>
         </div>
 

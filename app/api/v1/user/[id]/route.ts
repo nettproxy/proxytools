@@ -23,7 +23,7 @@ function idToDate(id: string) {
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
   const id = params.id;
 
-  const token = process.env.DISCORD_BOT_TOKEN
+  const token = process.env.DISCORD_BOT_TOKEN // Store token safely in .env
 
   try {
     const response = await fetch(`https://canary.discord.com/api/v10/users/${id}`, {
