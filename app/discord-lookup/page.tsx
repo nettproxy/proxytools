@@ -9,7 +9,7 @@ import { BadgeAlertIcon, Send, Loader2, User, Info, ExternalLink, Server } from 
 import { toast } from "sonner"
 import Image from "next/image"
 import Link from "next/link"
-import {
+import { 
   HoverCard,
   HoverCardContent,
   HoverCardTrigger, 
@@ -59,6 +59,7 @@ interface DiscordUserData {
   flags?: number
   premium_type?: number
   created_at?: string
+  banner_color?: string
 }
 
 function getDiscordAvatarUrl(user: DiscordUserData) {
@@ -67,12 +68,16 @@ function getDiscordAvatarUrl(user: DiscordUserData) {
     const defaultAvatarId = Number(user.discriminator) % 5
     return `https://cdn.discordapp.com/embed/avatars/${defaultAvatarId}.png`
   }
-  const format = user.media.avatar.avatar.startsWith("a_") ? "gif" : "png"
-  return `https://cdn.discordapp.com/avatars/${user.id}/${user.media.avatar.avatar}.${format}?size=256`
+  if(user.media.avatar.avatar) {
+      const format = user.media.avatar.avatar.startsWith("a_") ? "gif" : "png"
+      return `https://cdn.discordapp.com/avatars/${user.id}/${user.media.avatar.avatar}.${format}?size=256`
+  } else {
+    return null;
+  }
 }
 
 function getDiscordProfileUrl(userId: string) {
-  return `http://localhost:1337/api/v1/users/${userId}`
+  return `/api/v1/user/${userId}`
 }
 
 function getCreatedAtFromId(id: string): string | null {
@@ -85,15 +90,6 @@ function getCreatedAtFromId(id: string): string | null {
     return null
   }
 }
-
-const gotoCfx = () => {
-  window.location.href = "/cfx-resolver"
-}
-
-const gotoHome = () => {
-  window.location.href = "/"
-}
-
 export default function DiscordLookup() {
   const [userId, setUserId] = useState("")
   const [userData, setUserData] = useState<DiscordUserData | null>(null)
@@ -116,7 +112,7 @@ export default function DiscordLookup() {
     setLoading(true)
     setUserData(null)
     try {
-      const response = await fetch(`http://localhost:1337/api/v1/user/${userId.trim()}`)
+      const response = await fetch(`/api/v1/user/${userId.trim()}`)
       if (!response.ok) {
         throw new Error(`User not found or API error (${response.status})`)
       }
@@ -277,9 +273,15 @@ export default function DiscordLookup() {
                 <img
                   src={getDiscordAvatarUrl(userData)}
                   alt="Discord Avatar"
-                  className="rounded-full w-32 h-32 border-4 border-indigo-400 shadow-lg mb-2"
+                  className="rounded-full w-32 h-32 border-4 shadow-lg mb-2"
+                  style={{
+                    borderColor: userData.accent_color
+                      ? `#${userData.accent_color.toString(16).padStart(6, '0')}`
+                      : '#ccc', // fallback color
+                  }}
                   draggable={false}
                 />
+
                 <CardTitle className="text-2xl font-bold tracking-tight flex items-center gap-2">
                   {userData.username.replace("#0","")}
                   <span className="text-muted-foreground text-lg">#{userData.discriminator}</span>

@@ -1,9 +1,25 @@
 "use client"
-
 import { Server, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
+
+function gotoWebhookDeleter() {
+  window.location.href = '/webhook-deleter';
+}
+
+function gotoWebhookSender() {
+  window.location.href = '/webhook-sender';
+}
+
+function gotoDiscordLookup() {
+  window.location.href = '/discord-lookup';
+}
+
+function gotoCfxResolver() {
+  window.location.href = '/cfx-resolver';
+}
+
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -28,16 +44,16 @@ export default function Home() {
           </p>
           <Link href="/discord-lookup">
           <div className="flex flex-wrap gap-4 justify-center mt-8">
-          <Button variant="default" className="text-lg px-6 py-4" onClick={() => window.location.href = '/cfx-resolver'}>
+          <Button variant="default" className="text-lg px-6 py-4" onClick={() => gotoCfxResolver()}>
             CFX Search
           </Button>
-          <Button variant="default" className="text-lg px-6 py-4" onClick={() => window.location.href = '/discord-lookup'}>
+          <Button variant="default" className="text-lg px-6 py-4" onClick={() => gotoDiscordLookup()}>
             Discord User Lookup
           </Button>
-          <Button variant="default" className="text-lg px-6 py-4"  onClick={() => window.location.href = '/webhook-sender'}>
+          <Button variant="default" className="text-lg px-6 py-4"  onClick={() => gotoWebhookSender()}>
             Webhook Sender
           </Button>
-          <Button variant="default" className="text-lg px-6 py-4" onClick={() => window.location.href = '/webhook-deleter'}>
+          <Button variant="default" className="text-lg px-6 py-4" onClick={() => gotoWebhookDeleter()}>
             Webhook Deleter
           </Button>
         </div>

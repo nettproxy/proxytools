@@ -264,6 +264,7 @@ export default function Home() {
         <div className="container max-w-5xl mx-auto flex items-center justify-between h-16 px-4">
           <div className="flex items-center gap-4">
             <h1 className="text-xl font-bold bg-gradient-to-r from-pink-500 via-pink-400 via-white via-blue-400 to-blue-500 bg-clip-text text-transparent">
+              ProxyTools - CFX Resolver
             </h1>
           </div>
           <div className="flex items-center gap-4">
